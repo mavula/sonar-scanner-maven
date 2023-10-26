@@ -17,6 +17,16 @@ steps:
   inputs:
     SonarQube: 'sqube'
     scannerMode: 'Other'
+- task: Maven@4
+  inputs:
+    mavenPomFile: 'sonar-scanner-maven/pom.xml'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    javaHomeOption: 'JDKVersion'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: false
 - script: |
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
