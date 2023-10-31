@@ -20,13 +20,15 @@ steps:
 - task: Maven@4
   inputs:
     mavenPomFile: 'pom.xml'
+    options: '-DSCANNER_APP=PwcStageSonarScanner -DSCANNER_APP_VERSION=1.0.0'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     javaHomeOption: 'JDKVersion'
     mavenVersionOption: 'Default'
     mavenAuthenticateFeed: false
     effectivePomSkip: false
-    sonarQubeRunAnalysis: false
+    sonarQubeRunAnalysis: true
+    sqMavenPluginVersionChoice: 'latest'
 - task: SonarQubePublish@5
   inputs:
     pollingTimeoutSec: '300'
